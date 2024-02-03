@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Tracker</title>
+</head>
+<body>
+
+<a href="#" id="getLocationLink">Get My Location</a>
+
+<script>
+document.getElementById('getLocationLink').addEventListener('click', function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Format the location as text
+            var locationText = 'Latitude: ' + latitude + ', Longitude: ' + longitude;
+
+            // You can now save this location text as needed. 
+            // For example, you can save it to a file, send it to a server, or display it on the page.
+
+            // For demonstration, let's log it to the console
+            console.log(locationText);
+
+            // You can also open a new window or tab to display the location text
+            // window.open('data:text/plain;charset=utf-8,' + encodeURIComponent(locationText), '_blank');
+        }, function(error) {
+            console.error('Error getting location:', error.message);
+        });
+    } else {
+        console.error('Geolocation is not supported by this browser.');
+    }
+});
+</script>
+
+</body>
+</html>
